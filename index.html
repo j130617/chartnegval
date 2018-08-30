@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-
-<style> /* set the CSS */
-body { font: 12px Arial;}
-
-.bar { fill: steelblue; }
-
+<style>
+.bar--positive {
+  fill: steelblue;
+}
+.bar--negative {
+  fill: darkorange;
+}
+.axis text {
+  font: 10px sans-serif;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
 .toolTip {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: absolute;
@@ -39,56 +49,34 @@ var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-//title
-svg.append("text")
-  .attr("x", (width / 2))
-  .attr("y", 0 - (margin.top / 3))
-  .attr("text-anchor", "middle")
-  .style("font-size", "16px")
-  .style("text-decoration", "underline")
-  .text("Title");
+    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
 
 		// X scale
-var x = d3.scaleBand().
-range([width, 0])
-  .padding(0.1);
+var x = d3.scaleBand()
+	.range([width, 0])
+  	.padding(0.1);
 
 		//y scale
 var y = d3.scaleLinear()
-  .range([height, 0]);
+  	.range([height, 0]);
 
 var xAxis = d3.axisBottom(x);
 var yAxis = d3.axisLeft(y).tickSize(6, 0);
 
-	// text label for the x axis
-svg.append("text")
-  .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
-  .style("text-anchor", "middle")
-  .text("X Label");
-
-
 d3.csv("bbp.csv", type, function(error, data) {
-    x.domain(data.map(function(d) { return d.kwart;}));
-    y.domain(d3.extent(data, function(d) {return d.perc;})).nice();
+    x.domain(data.map(function(d) { return d.kwart; }));
+    y.domain(d3.extent(data, function(d) { return d.perc; })).nice();
 
-  svg.selectAll('.bar').
-  data(data).
-  enter().append('rect').
-  attr('class', function(d) {
-    return "bar bar--" + (d.perc < 0 ? "negative" : "positive");
-  }).
-  attr('x', function(d) {
-    return x(d.kwart);
-  }).
-  attr('y', function(d) {
-    return y(Math.max(0, d.perc));
-  }).
-  attr('height', function(d) {
-    return Math.abs(y(d.perc) - y(0));
-  }).
-  attr('width', x.bandwidth());
+  	
+  svg.selectAll('.bar')
+  .data(data)
+  .enter().append('rect')
+  .attr('class', function(d) {return "bar bar--" + (d.perc < 0 ? "negative" : "positive"); })
+  .attr('x', function(d) {return x(d.kwart);})
+  .attr('y', function(d) {return y(Math.min(0, d.perc));})
+  .attr('height', function(d) {return Math.abs(y(d.perc) - y(0));})
+  .attr('width', x.bandwidth());
   
 	    svg.append('g').
   		attr('class', 'y axis').

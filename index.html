@@ -65,8 +65,18 @@ var xAxis = d3.axisBottom(x);
 var yAxis = d3.axisLeft(y).tickSize(6, 0);
 
 d3.csv("bbp.csv", type, function(error, data) {
+  if (error) throw error;
+
+  // format the data
+  data.forEach(function(d) {
+    d.perc = +d.perc;
+  });
+	
     x.domain(data.map(function(d) { return d.kwart; }));
     y.domain(d3.extent(data, function(d) { return d.perc; })).nice();
+
+// Define the div for the tooltip
+var tooltip = d3.select("body").append("div").attr("class", "toolTip");	
 
   	
   svg.selectAll('.bar')
@@ -90,10 +100,10 @@ d3.csv("bbp.csv", type, function(error, data) {
 	    
   		//selectAll('.tick').filter(function(d, i) {return data[i].perc < 0;
 });
-function type(d) {
-  d.value = +d.value;
-  return d;
-}
+//function type(d) {
+  //d.value = +d.value;
+  //return d;
+//}
 
 </script>
 </body>

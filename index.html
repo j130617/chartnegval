@@ -3,7 +3,9 @@
 
 <style> /* set the CSS */
 body { font: 12px Arial;}
+
 .bar { fill: steelblue; }
+
 .toolTip {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: absolute;
@@ -19,6 +21,7 @@ body { font: 12px Arial;}
     padding: 5px;
     text-align: center;
 }
+
 </style>
 <body>
 
@@ -67,12 +70,8 @@ svg.append("text")
 
 
 d3.csv("bbp.csv", type, function(error, data) {
-    x.domain(data.map(function(d) {
-        return d.kwart;
-    }));
-    y.domain(d3.extent(data, function(d) {
-        return d.perc;
-    })).nice();
+    x.domain(data.map(function(d) { return d.kwart;}));
+    y.domain([d3.extent(data, function(d) {return d.perc;})]).nice();
 
   svg.selectAll('.bar').
   data(data).

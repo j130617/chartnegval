@@ -89,8 +89,8 @@ d3.csv("bbp.csv", type, function(error, data) {
 	    svg.append('g')
   		.attr('class', 'x axis')
   		.attr('transform', 'translate(0,' + y(0) + ')')
-		.call(xAxis);
-	      	.selectAll('.tick') //.filter(function(d, i) {return data[i].value < 0;
+		.call(xAxis)//;
+	      	.selectAll('.tick'); //.filter(function(d, i) {return data[i].value < 0;
 	        
 });
 

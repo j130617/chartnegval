@@ -90,7 +90,10 @@ d3.csv("bbp.csv", type, function(error, data) {
 	    
   		//selectAll('.tick').filter(function(d, i) {return data[i].perc < 0;
 });
-
+function type(d) {
+  d.value = +d.value;
+  return d;
+}
 
 </script>
 </body>

@@ -97,13 +97,13 @@ d3.csv("bbp.csv", type, function(error, data) {
   		.attr('class', 'x axis')
   		.attr('transform', 'translate(0,' + y(0) + ')')
 		.call(xAxis)//.ticks(10, "%"));
-	      	.selectAll('.tick').filter(function(d, i) {return data[i].perc < 0;
+	      	//.selectAll('.tick').filter(function(d, i) {return data[i].perc < 0;
 });
 
-//function type(d) {
-  //d.perc = +d.perc;
-  //return d;
-//}
+function type(d) {
+  d.perc = +d.perc;
+  return d;
+}
 
 </script>
 </body>

@@ -80,7 +80,7 @@ d3.csv("bbp.csv", type, function(error, data) {
     return "bar bar--" + (d.perc < 0 ? "negative" : "positive");
   }).
   attr('x', function(d) {
-    return x(d.month);
+    return x(d.kwart);
   }).
   attr('y', function(d) {
     return y(Math.max(0, d.perc));

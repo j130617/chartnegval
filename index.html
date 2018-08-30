@@ -96,14 +96,16 @@ d3.csv("bbp.csv", type, function(error, data) {
 	    svg.append('g')
   		.attr('class', 'x axis')
   		.attr('transform', 'translate(0,' + y(0) + ')')
-		.call(xAxis);
+		.call(xAxis) //;
 	      	//.selectAll('.tick').filter(function(d, i) {return data[i].value < 0;
+	        .selectAll('.tick')
+		.filter(function type(d) {return d.value < 0;
 });
 
-function type(d) {
-  d.perc = +d.perc;
-  return d;
-}
+//function type(d) {
+  //d.perc = +d.perc;
+  //return d;
+//}
 
 </script>
 </body>

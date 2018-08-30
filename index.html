@@ -76,7 +76,7 @@ d3.csv("bbp.csv", type, function(error, data) {
     y.domain(d3.extent(data, function(d) { return d.perc; })).nice();
 
 // Define the div for the tooltip
-var tooltip = d3.select("body").append("div").attr("class", "toolTip");	
+// var tooltip = d3.select("body").append("div").attr("class", "toolTip");	
 
   	
   svg.selectAll('.bar')

@@ -78,18 +78,17 @@ d3.csv("bbp.csv", type, function(error, data) {
   .attr('height', function(d) {return Math.abs(y(d.perc) - y(0));})
   .attr('width', x.bandwidth());
   
-	    svg.append('g').
-  		attr('class', 'y axis').
-  		attr('transform', 'translate(' + width + ',0)').
-  		call(yAxis);
+	    svg.append('g')
+  		.attr('class', 'y axis')
+  		.attr('transform', 'translate(' + width + ',0)')
+  		.call(yAxis);
   
-	    var tickNegative = svg.append('g').
-  		attr('class', 'x axis').
-  		attr('transform', 'translate(0,' + y(0) + ')').
-  		call(xAxis).
-  		selectAll('.tick').
-  		filter(function(d, i) {
-    		return data[i].perc < 0;
+	    svg.append('g')
+  		.attr('class', 'x axis')
+  		.attr('transform', 'translate(0,' + y(0) + ')')
+		.call(xAxis);
+	    
+  		//selectAll('.tick').filter(function(d, i) {return data[i].perc < 0;
 });
 
 

@@ -71,7 +71,7 @@ svg.append("text")
 
 d3.csv("bbp.csv", type, function(error, data) {
     x.domain(data.map(function(d) { return d.kwart;}));
-    y.domain([d3.extent(data, function(d) {return d.perc;})]).nice();
+    y.domain(d3.extent(data, function(d) {return d.perc;})).nice();
 
   svg.selectAll('.bar').
   data(data).

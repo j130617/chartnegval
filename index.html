@@ -62,7 +62,7 @@ var y = d3.scaleLinear()
   	.range([height, 0]);
 
 var xAxis = d3.axisBottom(x);
-var yAxis = d3.axisLeft(y).ticks(10, "%")); //.tickSize(6, 0);
+var yAxis = d3.axisLeft(y).tickSize(6, 0);
 
 d3.csv("bbp.csv", type, function(error, data) {
   //if (error) throw error;

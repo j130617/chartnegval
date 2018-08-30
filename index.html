@@ -65,8 +65,6 @@ var xAxis = d3.axisBottom(x);
 var yAxis = d3.axisLeft(y).tickSize(6, 0);
 
 d3.csv("bbp.csv", type, function(error, data)) {
-	 
-	
     x.domain(data.map(function(d) { return d.kwart; }));
     y.domain(d3.extent(data, function(d) { return d.perc; })).nice();
 

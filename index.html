@@ -66,16 +66,13 @@ svg.append("text")
   .text("X Label");
 
 
-    d3.csv('bbp.csv', function(data) {
-
-	    // format the data
-  	data.forEach(function(d) {
-    	d.perc = +d.perc
-	d.kwart = +d.kwart;
-  	});
-
-	x.domain(data.map(function(d) { return d.kwart; }));
-  	y.domain([0, d3.max(data, function(d) { return d.perc; })]);
+d3.csv("bbp.csv", type, function(error, data) {
+    x.domain(data.map(function(d) {
+        return d.kwart;
+    }));
+    y.domain(d3.extent(data, function(d) {
+        return d.perc;
+    })).nice();
 
   svg.selectAll('.bar').
   data(data).

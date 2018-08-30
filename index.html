@@ -65,7 +65,6 @@ svg.append("text")
   .style("text-anchor", "middle")
   .text("X Label");
 
-function render(data) {
 
     d3.csv('bbp.csv', function(data) {
 
@@ -107,9 +106,8 @@ function render(data) {
   		selectAll('.tick').
   		filter(function(d, i) {
     		return data[i].perc < 0;
-  });
-}
+});
 
-render(data)
+
 </script>
 </body>

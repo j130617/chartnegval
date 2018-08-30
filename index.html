@@ -87,7 +87,7 @@ d3.csv("bbp.csv", type, function(error, data) {
     return y(Math.max(0, d.perc));
   }).
   attr('height', function(d) {
-    return Math.abs(y(d.perc) - y2(0));
+    return Math.abs(y(d.perc) - y(0));
   }).
   attr('width', x.bandwidth());
   

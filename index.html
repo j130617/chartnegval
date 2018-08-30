@@ -99,7 +99,7 @@ d3.csv("bbp.csv", type, function(error, data) {
 		.call(xAxis) //;
 	      	//.selectAll('.tick').filter(function(d, i) {return data[i].value < 0;
 	        .selectAll('.tick')
-		.filter(function (d) {return d.value < 0;
+		.filter(function(d,i) {return d.value < 0;
 });
 
 //function type(d) {

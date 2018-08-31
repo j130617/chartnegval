@@ -61,7 +61,7 @@ var x = d3.scaleBand()
 		//y scale
 var y = d3.scaleLinear()
   	.range([height,0]);
-	//.range([0,height]);
+	
 		
 var xAxis = d3.axisBottom(x).ticks(7);
 
@@ -69,8 +69,7 @@ var xAxis = d3.axisBottom(x).ticks(7);
 var yAxis = d3.axisRight(y).tickSize(6,0);   // .tickFormat(formatAsPercentage); // 
 
 d3.csv("bbp.csv", type, function(error, data) {
-
-	//console.log(data);
+console.log(data);
     x.domain(data.map(function(d) { return d.kwart; }));
     y.domain(d3.extent(data, function(d) { return d.perc; })).nice();
 

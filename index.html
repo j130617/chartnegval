@@ -83,7 +83,7 @@ var tooltip = d3.select("body").append("div").attr("class", "toolTip");
   .enter().append('rect')
   .attr('class', function(d) {return "bar bar--" + (d.perc < 0 ? "negative" : "positive"); })
   .attr('x', function(d) {return x(d.kwart);})
-  .attr('y', function(d) {return y(Math.min(0, d.perc));})
+  .attr('y', function(d) {return y(Math.max(0, d.perc));})
   .attr('height', function(d) {return Math.abs(y(d.perc) - y(0));})
   .attr('width', x.bandwidth()) //;
   	  .on("mousemove", function(d){

@@ -90,7 +90,7 @@ var tooltip = d3.select("body").append("div").attr("class", "toolTip");
               .style("left", d3.event.pageX + 10 + "px")
               .style("top", d3.event.pageY - 25 + "px")
               .style("display", "inline-block")
-              .html((d.kwart) + "<br>" + (d.perc) + " %");
+              .html((d.kwart) + "<br>" + ((d.perc)*100) + " %");
 
         })
     		.on("mouseout", function(d){ tooltip.style("display", "none");});

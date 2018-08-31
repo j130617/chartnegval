@@ -63,7 +63,7 @@ var y = d3.scaleLinear()
   	.range([height,0]);
 	//.range([0,height]);
 		
-var xAxis = d3.axisBottom(x);
+var xAxis = d3.axisBottom(x).ticks(5));
 
 //var formatAsPercentage = d3.format("1.0%");
 var yAxis = d3.axisRight(y).ticks(10,"%")); //.tickSize(6,0);   //.tickFormat(formatAsPercentage); // 

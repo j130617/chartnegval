@@ -65,8 +65,8 @@ var y = d3.scaleLinear()
 		
 var xAxis = d3.axisBottom(x).ticks(7);
 
-var formatAsPercentage = d3.format("1.0%");
-var yAxis = d3.axisRight(y).tickFormat(formatAsPercentage); // .tickSize(6,0);   //
+//var formatAsPercentage = d3.format("1.0%");
+var yAxis = d3.axisRight(y).tickSize(6,0);   // .tickFormat(formatAsPercentage); // 
 
 d3.csv("bbp.csv", type, function(error, data) {
 

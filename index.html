@@ -29,7 +29,7 @@
     color: black;
     font: 12px sans-serif;
     padding: 5px;
-    text-align: center;
+    text-align: left;
 }
 
 </style>
@@ -61,15 +61,20 @@ var x = d3.scaleBand()
 var y = d3.scaleLinear()
   	.range([height, 0]);
 
+		
 var xAxis = d3.axisBottom(x);
-var yAxis = d3.axisLeft(y).tickSize(6, 0);
+
+var formatAsPercentage = d3.format("1.0%");
+var yAxis = d3.axisLeft(y).tickFormat(formatAsPercentage); //.tickSize(6, 0);
 
 d3.csv("bbp.csv", type, function(error, data) {
+
+	console.log(data);
     x.domain(data.map(function(d) { return d.kwart; }));
     y.domain(d3.extent(data, function(d) { return d.perc; })).nice();
 
 // Define the div for the tooltip
-// var tooltip = d3.select("body").append("div").attr("class", "toolTip");	
+var tooltip = d3.select("body").append("div").attr("class", "toolTip");	
 
   	
   svg.selectAll('.bar')
@@ -80,17 +85,30 @@ d3.csv("bbp.csv", type, function(error, data) {
   .attr('y', function(d) {return y(Math.min(0, d.perc));})
   .attr('height', function(d) {return Math.abs(y(d.perc) - y(0));})
   .attr('width', x.bandwidth());
-  
+  	  .on("mousemove", function(d){
+            tooltip
+              .style("left", d3.event.pageX + 10 + "px")
+              .style("top", d3.event.pageY - 25 + "px")
+              .style("display", "inline-block")
+              .html((d.key) + "<br>" + (d.value) + " miljard euro");
+
+        })
+    		.on("mouseout", function(d){ tooltip.style("display", "none");});
+	
+	
 	    svg.append('g')
   		.attr('class', 'y axis')
   		.attr('transform', 'translate(' + width + ',0)')
   		.call(yAxis);
   
-	    svg.append('g')
+	    var tickNegative = svg.append('g')
   		.attr('class', 'x axis')
   		.attr('transform', 'translate(0,' + y(0) + ')')
 		.call(xAxis)//;
-	      	.selectAll('.tick'); //.filter(function(d, i) {return data[i].value < 0;
+	      	.selectAll(".tick")
+		.filter(function(d, i) { return data[i].per < 0; });
+	
+	 //.selectAll('.tick'); //.filter(function(d, i) {return data[i].value < 0;
 	        
 });
 

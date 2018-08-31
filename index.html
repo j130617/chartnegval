@@ -65,8 +65,8 @@ var y = d3.scaleLinear()
 		
 var xAxis = d3.axisBottom(x);
 
-//var formatAsPercentage = d3.format("1.0%");
-var yAxis = d3.axisLeft(y).tickSize(6, 0);   //.tickFormat(formatAsPercentage); // 
+var formatAsPercentage = d3.format("1.0%");
+var yAxis = d3.axisLeft(y).tickFormat(formatAsPercentage); //.tickSize(6, 0);   // 
 
 d3.csv("bbp.csv", type, function(error, data) {
 
@@ -75,7 +75,7 @@ d3.csv("bbp.csv", type, function(error, data) {
     y.domain(d3.extent(data, function(d) { return d.perc; })).nice();
 
 // Define the div for the tooltip
-//var tooltip = d3.select("body").append("div").attr("class", "toolTip");	
+var tooltip = d3.select("body").append("div").attr("class", "toolTip");	
 
   	
   svg.selectAll('.bar')
@@ -85,16 +85,16 @@ d3.csv("bbp.csv", type, function(error, data) {
   .attr('x', function(d) {return x(d.kwart);})
   .attr('y', function(d) {return y(Math.min(0, d.perc));})
   .attr('height', function(d) {return Math.abs(y(d.perc) - y(0));})
-  .attr('width', x.bandwidth());
-  	 // .on("mousemove", function(d){
-            //tooltip
-             // .style("left", d3.event.pageX + 10 + "px")
-              //.style("top", d3.event.pageY - 25 + "px")
-              //.style("display", "inline-block")
-              //.html((d.key) + "<br>" + (d.value) + " miljard euro");
+  .attr('width', x.bandwidth()) //;
+  	  .on("mousemove", function(d){
+            tooltip
+              .style("left", d3.event.pageX + 10 + "px")
+              .style("top", d3.event.pageY - 25 + "px")
+              .style("display", "inline-block")
+              .html((d.key) + "<br>" + (d.value) + " miljard euro");
 
-        //})
-    		//.on("mouseout", function(d){ tooltip.style("display", "none");});
+        })
+    		.on("mouseout", function(d){ tooltip.style("display", "none");});
 	
 	
 	    svg.append('g')

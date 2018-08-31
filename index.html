@@ -106,7 +106,7 @@ var tooltip = d3.select("body").append("div").attr("class", "toolTip");
   		.attr('transform', 'translate(0,' + y(0) + ')')
 		.call(xAxis)//;
 	      	.selectAll(".tick")
-		.filter(function(d, i) { return data[i].perc < 0; //});
+		.filter(function(d, i) { return data[i].perc < 0; });
 	        
 });
 

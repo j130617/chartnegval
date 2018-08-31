@@ -64,8 +64,8 @@ var y = d3.scaleLinear()
 		
 var xAxis = d3.axisBottom(x);
 
-//var formatAsPercentage = d3.format("1.0%");
-var yAxis = d3.axisLeft(y).tickSize(6, 0);// .tickFormat(formatAsPercentage); //
+var formatAsPercentage = d3.format("1.0%");
+var yAxis = d3.axisLeft(y).tickFormat(formatAsPercentage); //.tickSize(6, 0);// 
 
 d3.csv("bbp.csv", type, function(error, data) {
 
@@ -106,7 +106,7 @@ var tooltip = d3.select("body").append("div").attr("class", "toolTip");
   		.attr('transform', 'translate(0,' + y(0) + ')')
 		.call(xAxis)//;
 	      	.selectAll(".tick")
-		.filter(function(d, i) { return data[i].per < 0; });
+		.filter(function(d, i) { return data[i].perc < 0; });
 	
 	 //.selectAll('.tick'); //.filter(function(d, i) {return data[i].value < 0;
 	        
